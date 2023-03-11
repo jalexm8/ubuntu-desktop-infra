@@ -13,6 +13,13 @@ ubuntu_packages_desktop:
   - gnome-tweaks
   - dconf-editor
   - git
+  - ubuntu-restricted-extras
+  - vlc
+  - chrome-gnome-shell
+  - gnome-shell-extensions
+  - gnome-sushi
 
 pip_packages:
   - psutil
+
+ssh_path: "/home/${{ username }}/.ssh/"

@@ -29,3 +29,5 @@
     state: present
 
 - include_tasks: vscode_install.yaml
+- include_tasks: generate_ssh_key.yaml
+- include_tasks: firewall_config.yaml

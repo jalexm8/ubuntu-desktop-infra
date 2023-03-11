@@ -1,0 +1,11 @@
+---
+- name: See if SSH key exists
+  ansible.builtin.stat:
+    path: "${{ ssh_path }}"
+  register: ssh_status
+
+- name: Generate an OpenSSH keypair
+  community.crypto.openssh_keypair:
+    path: /tmp/id_ed25519
+    type: "ed25519"
+  when: not ssh_status.stat.exists

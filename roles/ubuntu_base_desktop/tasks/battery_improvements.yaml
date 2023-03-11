@@ -1,0 +1,15 @@
+---
+- name: Installing tlp
+  ansible.builtin.package:
+    name:
+      - tlp
+      - tlp-rdw
+    state: present
+  become: true
+  when: is_laptop
+
+- name: Start service tlp
+  ansible.builtin.service:
+    name: tlp
+    state: started
+    enabled: true
