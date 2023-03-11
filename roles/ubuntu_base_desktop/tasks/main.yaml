@@ -1,0 +1,31 @@
+---
+- name: Update packages on Ubuntu
+  ansible.builtin.apt:
+    name: "*"
+    state: present
+    update_cache: true
+  become: true
+
+- name: Install essential packages
+  ansible.builtin.package:
+    name: "{{ ubuntu_packages_desktop }}"
+    state: present
+  become: true
+
+- name: Install pip packages
+  ansible.builtin.pip:
+    name: "{{ pip_packages }}"
+
+- name: Enable dark mode (1)
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/gtk-theme"
+    value: "'Yaru-sage-dark'"
+    state: present
+
+- name: Enable dark mode (2)
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/color-scheme"
+    value: "'prefer-dark'"
+    state: present
+
+- include_tasks: vscode_install.yaml

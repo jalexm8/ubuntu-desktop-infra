@@ -1,0 +1,9 @@
+---
+- name: Desktop configuration.
+  hosts: localhost
+
+  roles:
+    - role: roles/ubuntu_base_desktop
+      tags: ['base']
+    - role: roles/docker_setup
+      tags: ['docker']
