@@ -18,8 +18,12 @@ ubuntu_packages_desktop:
   - chrome-gnome-shell
   - gnome-shell-extensions
   - gnome-sushi
+  - flatpak
 
 pip_packages:
   - psutil
+
+flatpak_packages:
+  - com.obsproject.Studio
 
 ssh_path: "/home/${{ username }}/.ssh/"
