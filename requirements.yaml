@@ -2,3 +2,7 @@
 collections:
   - community.general
   - community.crypto
+
+roles:
+  - name: gantsign.oh-my-zsh
+    version: "2.6.0"

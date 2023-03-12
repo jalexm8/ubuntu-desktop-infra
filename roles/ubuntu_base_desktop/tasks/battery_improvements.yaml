@@ -1,5 +1,5 @@
 ---
-- name: Installing tlp
+- name: Install tlp
   ansible.builtin.package:
     name:
       - tlp
@@ -13,3 +13,5 @@
     name: tlp
     state: started
     enabled: true
+  become: true
+  when: is_laptop

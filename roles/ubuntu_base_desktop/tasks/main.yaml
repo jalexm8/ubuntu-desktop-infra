@@ -16,6 +16,19 @@
   ansible.builtin.pip:
     name: "{{ pip_packages }}"
 
+- name: Add the flathub flatpak repository remote
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+
+- name: Install flatpak packages
+  community.general.flatpak:
+    name: "{{ flatpak_packages }}"
+    state: present
+    method: user
+
 - name: Enable dark mode (1)
   community.general.dconf:
     key: "/org/gnome/desktop/interface/gtk-theme"
@@ -31,3 +44,5 @@
 - include_tasks: vscode_install.yaml
 - include_tasks: generate_ssh_key.yaml
 - include_tasks: firewall_config.yaml
+- include_tasks: battery_improvements.yaml
+- include_tasks: dotfiles.yaml
