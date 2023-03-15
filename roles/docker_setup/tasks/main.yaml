@@ -27,6 +27,9 @@
   ansible.builtin.package:
     name:
       - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
     state: present
     update_cache: true
   become: true
@@ -47,3 +50,5 @@
 
 - include_tasks: users.yaml
 - include_tasks: portainer.yaml
+- include_tasks: 5e-tools.yaml
+- include_tasks: watchtower.yaml
