@@ -23,7 +23,7 @@ ubuntu_packages_desktop:
 pip_packages:
   - psutil
 
-flatpak_packages:
-  - com.obsproject.Studio
+snap_packages:
+  - discord
 
 ssh_path: "/home/${{ username }}/.ssh/"
