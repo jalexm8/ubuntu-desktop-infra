@@ -1,5 +1,5 @@
 ---
-- name: Check-out dotifles
+- name: Check-out dotfles
   ansible.builtin.git:
     repo: git@github.com:jalexm8/dotfiles.git
     dest: /home/{{ username }}/src/dotfiles
