@@ -16,18 +16,10 @@
   ansible.builtin.pip:
     name: "{{ pip_packages }}"
 
-- name: Add the flathub flatpak repository remote
-  community.general.flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-    method: user
-
-- name: Install flatpak packages
-  community.general.flatpak:
-    name: "{{ flatpak_packages }}"
-    state: present
-    method: user
+- name: Install snap packages
+  community.general.snap:
+    name: "{{ snap_packages }}"
+  become: true
 
 - name: Enable dark mode (1)
   community.general.dconf:
@@ -41,8 +33,33 @@
     value: "'prefer-dark'"
     state: present
 
+- name: Configure terminal (1)
+  community.general.dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/:bafe9ba3-2f60-46d1-9e3f-1fbc3e382e8e/font"
+    value: "'Fira Code 12'"
+    state: present
+
+- name: Configure terminal (2)
+  community.general.dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/:bafe9ba3-2f60-46d1-9e3f-1fbc3e382e8e/background-color"
+    value: "'rgb(23,20,33)'"
+    state: present
+
+- name: Configure terminal (3)
+  community.general.dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/:bafe9ba3-2f60-46d1-9e3f-1fbc3e382e8e/bold-is-bright"
+    value: "true"
+    state: present
+
+- name: Configure terminal (4)
+  community.general.dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/:bafe9ba3-2f60-46d1-9e3f-1fbc3e382e8e/foreground-color"
+    value: "'rgb(208,207,204)'"
+    state: present
+
 - include_tasks: vscode_install.yaml
 - include_tasks: generate_ssh_key.yaml
 - include_tasks: firewall_config.yaml
 - include_tasks: battery_improvements.yaml
 - include_tasks: dotfiles.yaml
+- include_tasks: obs-studio_install.yaml
