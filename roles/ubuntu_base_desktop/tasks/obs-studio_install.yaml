@@ -1,0 +1,15 @@
+---
+- name: Add obsproject/obs-studio
+  ansible.builtin.apt_repository:
+    repo: 'ppa:obsproject/obs-studio'
+    state: present
+  become: true
+
+- name: Install obs-studio
+  ansible.builtin.package:
+    name:
+      - ffmpeg
+      - obs-studio
+    state: present
+    update_cache: true
+  become: true
